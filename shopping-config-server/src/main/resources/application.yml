@@ -1,0 +1,6 @@
+spring:
+  application.name: shopping-config-server
+  profiles:
+    active: native
+
+server.port: 9999

@@ -1,0 +1,56 @@
+spring:
+  application.name: shopping-user-service
+  datasource:
+    url: 'jdbc:mysql://0.0.0.0:3306/db'
+    username: user
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: true
+    hibernate.ddl-auto: update
+
+feign.client.config.default:
+  connectTimeout: 90000
+  readTimeout: 90000
+  loggerLevel: basic
+
+server.port: 8083
+
+eureka.client:
+  register-with-eureka: false
+  fetch-registry: false
+  enabled: false
+
+management:
+  security.enabled: false
+  git.info: full
+  endpoint:
+    health:
+      show-details: always
+
+spring.cache.type: none
+
+hystrix:
+  metrics:
+    enabled: true
+    polling-interval-ms: 10000
+
+security:
+  basic.enabled: false
+  require-ssl: false
+  oauth2.resource.prefer-token-info: false
+
+app:
+  authen.facebook:
+    extractFields: id,name,email,picture
+    expiredTokenMinutes: 30
+  api:
+    facebook.service.name: facebook-service
+  allowed:
+    origins: http://localhost:8083
+  security.jwt.key: NjzKYdBZ-4qETUC3gXkwhPl4ud_J9HGjE_fddnExEHvSgE1ixq8umV9hXKTz13AnArSiPVuIdBaVghvYSQC5KlXnVC6fQIiVuZVEaVM8WIl27ujidFKWmfU5evRjVJRVvhPIPzELxZviqFzUKC0fvM2YZjPObAhqDT5ZJ5TITWE
+
+facebook-service:
+  ribbon:
+    listOfServers: https://graph.facebook.com:443

@@ -1,0 +1,35 @@
+spring:
+  application.name: shopping-audit-worker
+
+eureka.client:
+  register-with-eureka: false
+  fetch-registry: false
+  enabled: false
+
+management:
+  security.enabled: false
+  git.info: full
+  endpoint:
+    health:
+      show-details: always
+
+spring.cache.type: none
+
+server.port: 8084
+
+security:
+  basic.enabled: false
+  require-ssl: false
+  oauth2.resource.prefer-token-info: false
+
+app:
+  mq:
+    audit:
+      topic:
+        exchangeName: shopping.topic.audit.log.exchange
+      retry:
+        exchangeName: shopping.topic.retry.audit.log.exchange
+    prefetchCount: 250
+    autoStartup: true
+    concurrency: 10
+    maxRetry: 0

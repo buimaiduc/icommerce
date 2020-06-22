@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: shopping-order-service
+  cloud:
+    config:
+      uri: http://localhost:9999 #Only for local build uncomment below lines.
+
+# 12FAE: Security & management related
+management:
+  security.enabled: false
+  git.info: full
+  endpoints:
+    web:
+      exposure:
+        include: "refresh"

@@ -1,0 +1,54 @@
+spring:
+  application.name: shopping-user-service
+  datasource:
+    url: 'jdbc:mysql://0.0.0.0:3306/db'
+    username: user
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: true
+    hibernate.ddl-auto: update
+
+feign.client.config.default:
+  connectTimeout: 90000
+  readTimeout: 90000
+  loggerLevel: basic
+
+eureka.client:
+  register-with-eureka: false
+  fetch-registry: false
+  enabled: false
+
+management:
+  security.enabled: false
+  git.info: full
+  endpoint:
+    health:
+      show-details: always
+
+spring.cache.type: none
+
+hystrix:
+  metrics:
+    enabled: true
+    polling-interval-ms: 10000
+
+security:
+  basic.enabled: false
+  require-ssl: false
+  oauth2.resource.prefer-token-info: false
+
+app:
+  mq:
+    audit:
+      topic:
+        exchangeName: shopping.topic.audit.log.exchange
+      retry:
+        exchangeName: shopping.topic.retry.audit.log.exchange
+    prefetchCount: 250
+    autoStartup: true
+    concurrency: 10
+    maxRetry: 0
+  allowed:
+    origins: http://localhost

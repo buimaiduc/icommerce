@@ -1,0 +1,37 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo:3.7
+    container_name: 'mongo_dev'
+    ports:
+      - "27017:27017"
+#    environment:
+#      - MONGO_INITDB_ROOT_USERNAME=admin
+#      - MONGO_INITDB_ROOT_PASSWORD=admin
+#    volumes:
+#      - ./mongo_initdb:/docker-entrypoint-initdb.d
+  mysql:
+    image: mysql/mysql-server
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: 'mysql_dev'
+    ports:
+    - 3306:3306
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_PASSWORD: 'root'
+    volumes:
+    - /tmp:/tmp
+
+  redis:
+    image: redis:alpine
+    container_name: redis_dev 
+    ports:
+      - "6379:6379"
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq_dev
+    ports:
+    - 5672:5672

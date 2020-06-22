@@ -1,0 +1,35 @@
+spring:
+  application.name: shopping-api-gateway
+  profiles:
+    active: native
+
+
+app:
+  allowed:
+    origins: http://localhost:8080
+
+server.port: 8080
+
+eureka.client:
+  register-with-eureka: false
+  fetch-registry: false
+  enabled: false
+
+zuul.routes:
+  # routing for product service
+  product_service_product.path: /v1/products/**
+  product_service_product.url: http://localhost:8081/v1/products
+  product_service_brand.path: /v1/brands/**
+  product_service_brand.url: http://localhost:8081/v1/brands
+
+  # routing for order service
+  order_service.path: /v1/orders/**
+  order_service.url: http://localhost:8082/v1/orders
+
+  # routing for user service
+  user_service.path: /v1/users/**
+  user_service.url: http://localhost:8083/v1/users
+
+security.jwt:
+  ignoreFilters: /v1/products/**, /v1/brands/**, /v1/users/login
+  secret: NjzKYdBZ-4qETUC3gXkwhPl4ud_J9HGjE_fddnExEHvSgE1ixq8umV9hXKTz13AnArSiPVuIdBaVghvYSQC5KlXnVC6fQIiVuZVEaVM8WIl27ujidFKWmfU5evRjVJRVvhPIPzELxZviqFzUKC0fvM2YZjPObAhqDT5ZJ5TITWE
