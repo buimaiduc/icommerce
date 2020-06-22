@@ -46,6 +46,6 @@ public class BrandServiceTest {
     @Test
     public void findById() {
         when(brandRepository.findById(anyLong())).thenReturn(Optional.of(new Brand()));
-        Assert.assertNotNull(brandRepository.findById(12313L));
+        Assert.assertNotNull(brandService.findById(12313L));
     }
 }
